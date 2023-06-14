@@ -8,7 +8,6 @@ import java.util.function.Function;
 
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.MalformedJwtException;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -19,7 +18,6 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
 @Component
-@AllArgsConstructor
 public class JwtTokenUtil implements Serializable {
     // https://www.javainuse.com/spring/boot-jwt
     // https://www.toptal.com/spring/spring-security-tutorial
@@ -29,6 +27,10 @@ public class JwtTokenUtil implements Serializable {
 
     @Value("${jwt.secret}")
     private String secret;
+
+    public JwtTokenUtil(UserDetailsService userDetailsService) {
+        this.userDetailsService = userDetailsService;
+    }
 
     public String getUsernameFromToken(String token) {
         return getClaimFromToken(token, Claims::getSubject);

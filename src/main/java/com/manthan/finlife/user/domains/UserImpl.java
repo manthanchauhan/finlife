@@ -1,5 +1,6 @@
 package com.manthan.finlife.user.domains;
 
+import com.manthan.finlife.signup.interfaces.UserSignupRequest;
 import com.manthan.finlife.user.interfaces.User;
 import com.manthan.finlife.utils.AbstractBaseModel;
 import jakarta.persistence.Column;
@@ -17,6 +18,7 @@ import java.util.Collection;
 @Entity
 @Table(name = "user")
 @Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserImpl extends AbstractBaseModel implements User {
@@ -66,5 +68,14 @@ public class UserImpl extends AbstractBaseModel implements User {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public static UserImpl fromUserSignupRequest(UserSignupRequest signupRequest){
+        return new UserImpl(
+                signupRequest.getFirstName(),
+                signupRequest.getLastName(),
+                signupRequest.getEmail(),
+                null
+        );
     }
 }

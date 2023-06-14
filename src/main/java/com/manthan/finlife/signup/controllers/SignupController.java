@@ -4,6 +4,7 @@ import com.manthan.finlife.signup.dtos.UserSignupRequestDto;
 import com.manthan.finlife.response.Response;
 import com.manthan.finlife.response.ResponseManager;
 import com.manthan.finlife.signup.interfaces.SignupService;
+import com.manthan.finlife.user.interfaces.User;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -20,7 +21,7 @@ public class SignupController {
 
     @PostMapping("")
     public Response signup(@RequestBody @Valid UserSignupRequestDto request){
-        String authToken = signupService.signup(request);
-        return ResponseManager.buildResponse(HttpStatus.OK, "", null);
+        User user = signupService.signup(request);
+        return ResponseManager.buildResponse(HttpStatus.OK, "Success", user);
     }
 }

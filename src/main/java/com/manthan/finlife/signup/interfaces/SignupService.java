@@ -1,5 +1,7 @@
 package com.manthan.finlife.signup.interfaces;
 
+import com.manthan.finlife.user.interfaces.User;
+
 public interface SignupService {
-    String signup(UserSignupRequest request);
+    User signup(UserSignupRequest request);
 }
