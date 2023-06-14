@@ -20,15 +20,10 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public User loadUserByUsername(String username) throws UsernameNotFoundException {
-        return getUserByEmailOrException(username);
-    }
-
-    @Override
-    public User getUserByEmailOrException(String email){
-        User user = getUserByEmailOrNull(email);
+        User user = getUserByEmailOrNull(username);
 
         if (user == null){
-            throw new UsernameNotFoundException(String.format("User with email '%s' not found", email));
+            throw new UsernameNotFoundException(String.format("User with email '%s' not found", user));
         }
 
         return user;

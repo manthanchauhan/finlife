@@ -37,13 +37,13 @@ public class JwtTokenUtil implements Serializable {
     }
 
     public String tryGetUsernameFromToken(String token) {
-        if (token == null){
+        if (token == null) {
             return null;
         }
 
-        try{
+        try {
             return getUsernameFromToken(token);
-        } catch (IllegalArgumentException | ExpiredJwtException | MalformedJwtException e){
+        } catch (IllegalArgumentException | ExpiredJwtException | MalformedJwtException e) {
             return null;
         }
     }
@@ -78,25 +78,25 @@ public class JwtTokenUtil implements Serializable {
     }
 
     public Boolean isValidAuthToken(String token) {
-        if (token == null){
+        if (token == null) {
             return Boolean.FALSE;
         }
 
         final boolean isTokenExpired = isTokenExpired(token);
 
-        if (isTokenExpired){
+        if (isTokenExpired) {
             return Boolean.FALSE;
         }
 
         final String username = tryGetUsernameFromToken(token);
 
-        if (username == null){
+        if (username == null) {
             return Boolean.FALSE;
         }
 
         final UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 
-        if (userDetails == null){
+        if (userDetails == null) {
             return Boolean.FALSE;
         }
 

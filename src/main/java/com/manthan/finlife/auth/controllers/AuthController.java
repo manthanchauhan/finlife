@@ -2,6 +2,7 @@ package com.manthan.finlife.auth.controllers;
 
 import com.manthan.finlife.auth.dtos.UserLoginRequestDto;
 import com.manthan.finlife.auth.interfaces.AuthService;
+import com.manthan.finlife.auth.interfaces.UserLoginResponse;
 import com.manthan.finlife.response.Response;
 import com.manthan.finlife.response.ResponseManager;
 import jakarta.validation.Valid;
@@ -20,7 +21,7 @@ public class AuthController {
 
     @PostMapping("/login")
     public Response login(@RequestBody @Valid UserLoginRequestDto request){
-        String authToken = authService.login(request);
-        return ResponseManager.buildResponse(HttpStatus.OK, "", null);
+        UserLoginResponse response = authService.login(request);
+        return ResponseManager.buildResponse(HttpStatus.OK, "Success", response);
     }
 }

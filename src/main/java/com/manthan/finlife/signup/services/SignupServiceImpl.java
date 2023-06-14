@@ -22,6 +22,9 @@ public class SignupServiceImpl implements SignupService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "User with this email already exists. Please Login.");
         }
 
-        return userService.createUser(request);
+        user = userService.createUser(request);
+        user.setEncryptedPassword(null);
+
+        return user;
     }
 }
