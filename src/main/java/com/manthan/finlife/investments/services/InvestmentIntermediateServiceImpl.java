@@ -1,9 +1,12 @@
 package com.manthan.finlife.investments.services;
 
-import com.manthan.finlife.investments.dtos.InvestmentListResponseDto;
+import com.manthan.finlife.investments.dtos.CreateInvestmentResponseDto;
+import com.manthan.finlife.investments.dtos.ListInvestmentResponseDto;
+import com.manthan.finlife.investments.interfaces.CreateInvestmentRequest;
+import com.manthan.finlife.investments.interfaces.CreateInvestmentResponse;
 import com.manthan.finlife.investments.interfaces.Investment;
 import com.manthan.finlife.investments.interfaces.InvestmentIntermediateService;
-import com.manthan.finlife.investments.interfaces.InvestmentListResponse;
+import com.manthan.finlife.investments.interfaces.ListInvestmentResponse;
 import com.manthan.finlife.investments.interfaces.InvestmentService;
 import com.manthan.finlife.user.interfaces.User;
 import com.manthan.finlife.user.interfaces.UserService;
@@ -19,10 +22,18 @@ public class InvestmentIntermediateServiceImpl implements InvestmentIntermediate
     private final UserService userService;
 
     @Override
-    public InvestmentListResponse getInvestments() {
+    public ListInvestmentResponse getInvestments() {
         User user = userService.getCurrentUser();
         List<Investment> investments = investmentService.getAllByUserId(user.getId());
 
-        return new InvestmentListResponseDto(investments);
+        return new ListInvestmentResponseDto(investments);
+    }
+
+    @Override
+    public CreateInvestmentResponse createInvestment(CreateInvestmentRequest request) {
+        User user = userService.getCurrentUser();
+
+        Investment investment = investmentService.createInvestment(request, user.getId());
+        return CreateInvestmentResponseDto.fromInvestment(investment);
     }
 }

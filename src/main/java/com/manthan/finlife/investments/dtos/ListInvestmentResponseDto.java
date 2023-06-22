@@ -1,8 +1,7 @@
 package com.manthan.finlife.investments.dtos;
 
 import com.manthan.finlife.investments.interfaces.Investment;
-import com.manthan.finlife.investments.interfaces.InvestmentListResponse;
-import lombok.AllArgsConstructor;
+import com.manthan.finlife.investments.interfaces.ListInvestmentResponse;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -10,11 +9,11 @@ import java.util.List;
 
 @Getter
 @NoArgsConstructor
-public class InvestmentListResponseDto implements InvestmentListResponse {
+public class ListInvestmentResponseDto implements ListInvestmentResponse {
     private List<Investment> investments;
     private Long investmentCount;
 
-    public InvestmentListResponseDto(List<Investment> investments){
+    public ListInvestmentResponseDto(List<Investment> investments){
         this.investments = investments;
         this.investmentCount = (long) investments.size();
     }

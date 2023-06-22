@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface InvestmentService {
     List<Investment> getAllByUserId(Long userId);
-    Investment createInvestment(Investment investment);
+    Investment createInvestment(CreateInvestmentRequest investment, Long userId);
     void deleteInvestment(Long investmentId);
     Investment updateInvestment(Investment investment);
 }
