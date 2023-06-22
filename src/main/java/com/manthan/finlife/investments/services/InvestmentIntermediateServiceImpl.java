@@ -3,7 +3,6 @@ package com.manthan.finlife.investments.services;
 import com.manthan.finlife.investments.dtos.InvestmentListResponseDto;
 import com.manthan.finlife.investments.interfaces.Investment;
 import com.manthan.finlife.investments.interfaces.InvestmentIntermediateService;
-import com.manthan.finlife.investments.interfaces.InvestmentListRequest;
 import com.manthan.finlife.investments.interfaces.InvestmentListResponse;
 import com.manthan.finlife.investments.interfaces.InvestmentService;
 import com.manthan.finlife.user.interfaces.User;
