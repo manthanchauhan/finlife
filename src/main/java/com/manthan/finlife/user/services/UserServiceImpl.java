@@ -7,6 +7,7 @@ import com.manthan.finlife.user.interfaces.User;
 import com.manthan.finlife.user.interfaces.UserService;
 import com.manthan.finlife.user.repositories.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -45,5 +46,10 @@ public class UserServiceImpl implements UserService{
         Optional<UserImpl> optionalUser = userRepository.findOne(UserRepository.hasEmail(email));
 
         return optionalUser.orElse(null);
+    }
+
+    @Override
+    public User getCurrentUser() {
+        return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
 }

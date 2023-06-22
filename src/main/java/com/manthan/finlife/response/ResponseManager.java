@@ -7,4 +7,8 @@ public interface ResponseManager {
         ResponseBody body = new ResponseBody(status.value(), message, data);
         return new Response(body, status);
     }
+
+    static Response buildSuccessResponse(Object data) {
+        return ResponseManager.buildResponse(HttpStatus.OK, "Success", data);
+    }
 }
